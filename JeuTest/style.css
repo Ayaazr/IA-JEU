@@ -1,0 +1,212 @@
+/* 1. Réinitialisation et structure de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e1e; /* Fond sombre pour un design moderne */
+  overflow: hidden;
+  font-size: 16px;
+}
+
+body {
+  background: linear-gradient(135deg, #1e1e1e, #222);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #fff;
+}
+
+/* 2. Animation du fond */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 3. Canvas - Amélioration des visuels */
+canvas {
+  display: block;
+  max-width: 100vw;
+  max-height: 100vh;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(82, 80, 94, 0.5); /* Ombre forte autour du canvas */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+canvas:hover {
+  transform: scale(1.05); /* Zoom léger au survol */
+  box-shadow: 0 0 70px rgba(0, 0, 0, 0.7); /* Ombre plus intense au survol */
+}
+
+/* 4. Éléments d'interface - Conteneur des contrôles */
+#labels-container {
+  position: absolute;
+  top: 10%;
+  left: 2%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.3s ease-out;
+}
+
+#labels-container p, #labels-container h1 {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8); /* Légèrement transparent pour un effet subtil */
+  transition: color 0.3s ease;
+}
+
+#labels-container p:hover, #labels-container h1:hover {
+  color: #ffcc00; /* Couleur d'accent au survol des labels */
+}
+
+/* 5. Boutons - Amélioration des boutons */
+button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  width: auto;
+  margin: 10px 0;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-4px); /* Effet de levée au survol */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+  background-color: #3e8e41;
+  transform: translateY(2px); /* Effet de pression lors du clic */
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* 6. Sliders - Design des sliders */
+input[type="range"] {
+  width: 260px;
+  height: 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  margin: 10px 0;
+  border: 2px solid transparent;
+}
+
+input[type="range"]:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+input[type="range"]:hover {
+  background: linear-gradient(90deg, #45a049, #4CAF50);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: #4CAF50;
+  transform: scale(1.1); /* Effet de zoom sur le curseur */
+}
+
+/* 7. Labels de sliders */
+#labels-container span {
+  font-size: 14px;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+/* 8. Interaction avec les labels et sliders */
+#labels-container label {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#labels-container input {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+}
+
+/* 9. Effets responsives */
+@media (max-width: 1024px) {
+  #labels-container {
+    top: 15%;
+    left: 5%;
+  }
+
+  button {
+    padding: 10px 18px;
+    font-size: 15px;
+  }
+
+  input[type="range"] {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  #labels-container {
+    top: 10%;
+    left: 2%;
+    gap: 12px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  input[type="range"] {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  #labels-container {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  input[type="range"] {
+    width: 180px;
+  }
+}
